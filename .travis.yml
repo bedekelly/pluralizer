@@ -1,9 +1,17 @@
 language: python
 python:
 - '2.7'
+
 install: pip install -r requirements.txt
 script: python -m unittest discover
+
+env:
+  global:
+  - AWS_ACCESS_KEY_ID: AKIAIESRLOBJSHKHNRAA
+  - secure: gPFbN+phni2+Th6/MVXFsMOOZ2dOPzBi38MufPLpXxvshLaQxuNM21W99Fm+q0WgKhvrqQlgSE6hYVEX8+wUxE0pMEFCnGhzDrBMi1g65aPiqOydLLexL11QGiXBl6WdbMqb0Yj0OMv3OtBRy5vbRO6zaAJ1efXNH+Py6fHKN6U6JA9SA7R/GYcXpx/GGW93pWfhVX1rjSUny3M/Hu9nOHUUPz5VHKr+mrWkQCHAYiGvROXsmaWglKjEa+sRACWU0WzC2hz3CIhbhB+qnkCyyRR/2P1z3HSPmJZeEzzOt/xni4Bbj2StQ/RCehePA8YvbAqX4XNPZ0VKGoBxxhLaEQhr2sczIaCwq7jkcXuKOxTd03K1gtKIck2w4wMfRkaywNAtuzP3cES/UR64LCPubEwG68bXS9Gwgl3NTmSBjvGkrKYWFOD9elfUzFMw6B7wWN6fxXQY0xOJ8uRhq6PtB6KGgwigR3VIBIx9pmLbnhe8s0uULCicPO8QDCTZza95v+cQPjyDzjYFZ2mpgsOE4nqjfT+GFLVOIv5HvV5w9tQ2GXPmSlNf7kYUBgvweyvR1RoF87VWtnFyYqtOaApU15l/jgB/vFDReG1o+p/TgJP5tbbvb3eQivc4CTx114AhMUAXf1Iyc1EkKcDkCNVUT8vVP1vxUzNDfh+L01F5NkI=
+
 before_deploy: ./build.sh
+
 deploy:
   provider: s3
   access_key_id: AKIAIESRLOBJSHKHNRAA
@@ -12,3 +20,5 @@ deploy:
   local_dir: build
   secret_access_key:
     secure: ljni2r0PeryozkF1CZr3h9hY874Fb26caYJbi9p4uJk8o4A3c6LyJ0w58X9oXjtsAeFtjXNXBnGB9pN00aG38wv81bDK6fMY4L64aR+Ny/aPTqQJPyDPVTB63KlfVOkpnGRRnBo6Z6AAwwWIYtQMRq/EA1Dp3cywj6+KVwPm3ua5HVKUtuXa9Z4MgzGWP6T7dFW1umUaox9OwiDt0gaPC1C+VUghsgS2VpHrFDX5d2YR4L5mKe4MCjQz83BNpwJo/h78vrvWY5r/NGxNt9Xt6JPIvNck8vvu8qo4XlNihXGzBwMLPevj5nD/Brl8Yi+l+J1eFPndzgTp5ldZ+2ZhIQBzMI94eqIU/kZqL4qreyKQ1AUhLzDB3NAjS8ZulHuf4bYPpu66V+M9vF3PDdwVidfk2UVNrZ6WPCj5nMjpUdPq1kWqFIbH0HPlsl+PyovzX75DMPFCPgtC95FbiiBZWOPr5hOLWzySaOqN2zuBjRufKvItRDA5xXRPsM58uNHjD24taWDTTNF/22yv8xf5IggUUIrVWXJ5i1khYmGqCZRVSV1aXG44gmmksD6W3qjdOOv/LZ7BxMsEGzOFaEWeYQ+sSHW7Y/o+ErSY8TUhkG2L99f9mfeSoAvXnIO0v0paUCB4mHbf7zZVmGb3lAZsAqTVupxHp3lHUHOCX+bbA+8=
+
+after_deploy: ./post_deploy.sh
