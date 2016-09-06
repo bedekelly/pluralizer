@@ -2,7 +2,7 @@ import unittest
 
 from mock import patch
 
-from pluralizer import pluralize, pluralize_handler, maybe_pluralize
+from pluralizer import pluralize, maybe_pluralize
 
 
 class TestPluralizer(unittest.TestCase):
