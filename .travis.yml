@@ -1,0 +1,13 @@
+language: python
+python:
+    - "2.7"
+
+install: pip install -r requirements.txt
+script: python -m unittest discover
+
+deploy:
+  provider: s3
+  access_key_id: "AKIAIJ7XMQQLWAYN47VQ"
+  secret_access_key: "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"
+  bucket: "pluralizer-code-travis-ci-bede-io"
+  upload-dir: pluralizer-latest
