@@ -3,8 +3,7 @@ python:
 - '2.7'
 
 before_install:
-  - pip install --user awscli
-  - export PATH=$PATH:$HOME/.local/bin
+  - pip install awscli
 
 install: pip install -r requirements.txt
 script: python -m unittest discover
