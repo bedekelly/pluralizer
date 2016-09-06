@@ -1,9 +1,14 @@
 language: python
 python:
 - '2.7'
-
 install: pip install -r requirements.txt
 script: python -m unittest discover
-
 before_deploy: ./build.sh
-
+deploy:
+  provider: s3
+  access_key_id: AKIAIESRLOBJSHKHNRAA
+  bucket: pluralize-code-bede-io
+  skip_cleanup: true
+  local_dir: build
+  secret_access_key:
+    secure: ljni2r0PeryozkF1CZr3h9hY874Fb26caYJbi9p4uJk8o4A3c6LyJ0w58X9oXjtsAeFtjXNXBnGB9pN00aG38wv81bDK6fMY4L64aR+Ny/aPTqQJPyDPVTB63KlfVOkpnGRRnBo6Z6AAwwWIYtQMRq/EA1Dp3cywj6+KVwPm3ua5HVKUtuXa9Z4MgzGWP6T7dFW1umUaox9OwiDt0gaPC1C+VUghsgS2VpHrFDX5d2YR4L5mKe4MCjQz83BNpwJo/h78vrvWY5r/NGxNt9Xt6JPIvNck8vvu8qo4XlNihXGzBwMLPevj5nD/Brl8Yi+l+J1eFPndzgTp5ldZ+2ZhIQBzMI94eqIU/kZqL4qreyKQ1AUhLzDB3NAjS8ZulHuf4bYPpu66V+M9vF3PDdwVidfk2UVNrZ6WPCj5nMjpUdPq1kWqFIbH0HPlsl+PyovzX75DMPFCPgtC95FbiiBZWOPr5hOLWzySaOqN2zuBjRufKvItRDA5xXRPsM58uNHjD24taWDTTNF/22yv8xf5IggUUIrVWXJ5i1khYmGqCZRVSV1aXG44gmmksD6W3qjdOOv/LZ7BxMsEGzOFaEWeYQ+sSHW7Y/o+ErSY8TUhkG2L99f9mfeSoAvXnIO0v0paUCB4mHbf7zZVmGb3lAZsAqTVupxHp3lHUHOCX+bbA+8=
