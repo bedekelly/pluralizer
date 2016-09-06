@@ -6,7 +6,7 @@ script: python -m unittest discover
 deploy:
   provider: lambda
   function_name: pluralize
-  role: arn:aws:iam::0123456789012:role/lambda_basic_execution
+  role: "arn:aws:iam::0123456789012:role/lambda_basic_execution"
   handler_name: pluralizer.pluralize
   access_key_id: AKIAIESRLOBJSHKHNRAA
   secret_access_key:
