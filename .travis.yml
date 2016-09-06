@@ -1,13 +1,13 @@
 language: python
 python:
-    - "2.7"
-
+- '2.7'
 install: pip install -r requirements.txt
 script: python -m unittest discover
-
 deploy:
-  provider: s3
-  access_key_id: "AKIAIJ7XMQQLWAYN47VQ"
-  secret_access_key: "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"
-  bucket: "pluralizer-code-travis-ci-bede-io"
-  upload-dir: pluralizer-latest
+  provider: lambda
+  function_name: pluralize
+  role: arn:aws:iam::0123456789012:role/lambda_basic_execution
+  handler_name: pluralizer.pluralize
+  access_key_id: AKIAIESRLOBJSHKHNRAA
+  secret_access_key:
+    secure: S+E9K1p0tJhD9g5xefj5ZUnzFnIeRc66ioPk9O6q4p45G+6LAVX3zKFvO/OAHMZWVuQNqmrbrzfZT7cP2w9kI9oeKGBS73RuYpnjcDboA8sV3j3ezth4iAYRH1dGeLmQWX0MhhrEfenVdYaagTE58gv5G41PfbiLeHJHnQ43vWadmcGaHPawQJoTGYVvy5f1CCHJoLp8IQfHwZG4Xve8LN1RbxnaId1PCmL1g4BpwV0x7xv3bJEibecrvF7bmsCmG01Ok9KmnBeYz7LUK0QXSB/n6v6JnxdA5Nk1F04eUpb0KcbyAYP6lmGZNIYAefB7we4a+gp7M3J0L8cI2FgnITtMzXbU5j8zfOgxKc+lVjQjLgd2dUijgcaugF3edpggKe8lRAFFDklRKyVfsCXK7DmfwHWJwaMvwGjUWpyqFkHEyBG1VoAcFH7cUyJO7HGH0zpIEhYpMsAX3cJCA/fOAFTKMHoNG5NqAVRgkkhieTAhLwCdzuPKEz6lrLaziuPA+5bGJJLXPk6es301QkRwZdQnPQrpxMch/02yKVgCX6Jd4eDMzDU+d6WPKNPPUx6eklpnCskLhs4kJODe59XF5pLI1VbKUIBKmHBdwMmwd0u/UX7MNnjGzAps9CivcMFF30fErO4YxTt7eJQ+UOfGXv3Y8wa9psskiw6PIRSSekE=
