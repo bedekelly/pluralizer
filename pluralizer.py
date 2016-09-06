@@ -37,4 +37,4 @@ def pluralize_handler(event, context):
     except KeyError:
         return context.fail("Bad Request: noun or quantity not provided.")
     else:
-        return context.success(maybe_pluralize(noun, quantity))
+        return context.succeed(maybe_pluralize(noun, quantity))
