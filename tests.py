@@ -1,10 +1,8 @@
-import json
 import unittest
 
 from mock import patch
 
-from pluralizer import pluralize, maybe_pluralize, pluralize_handler, \
-    LambdaException
+from pluralizer import pluralize, maybe_pluralize, pluralize_handler
 
 
 class TestPluralizer(unittest.TestCase):
@@ -50,7 +48,7 @@ class TestPluralizer(unittest.TestCase):
     def test_pluralize_handler_no_noun(self):
         event = {"quantity": 10}
         self.assertRaises(
-            LambdaException,
+            Exception,
             lambda: pluralize_handler(event, None)
         )
 

@@ -2,12 +2,6 @@
 pluralizer: A Lambda handler to pluralize (or not) a noun.
 """
 
-import json
-
-
-class LambdaException(BaseException):
-    """A dummy exception to throw. Should give API Gateway what it's after."""
-
 
 def pluralize(noun):
     """Given a noun, make it a plural."""
@@ -35,7 +29,7 @@ def pluralize_handler(event, _):
         noun = event["noun"]
         quantity = event["quantity"]
     except KeyError as e:
-        raise LambdaException("Bad Request: {} not given".format(str(e)))
+        raise Exception("Bad Request: {} not given".format(str(e)))
     return {
         "result": maybe_pluralize(noun, quantity)
     }
