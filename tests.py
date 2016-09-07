@@ -53,6 +53,15 @@ class TestPluralizer(unittest.TestCase):
             lambda: pluralize_handler(event, None)
         )
 
-
-if __name__ == "__main__":
-    unittest.main()
+    @patch("pluralizer.maybe_pluralize")
+    def test_pluralize_handler_correct(self, maybe_pluralize):
+        """
+        When pluralize_handler is called correctly, check it delegates to
+        maybe_pluralize and wraps the result in a dict accordingly.
+        """
+        event = {"quantity": 2, "noun": "strawberry"}
+        result = pluralize_handler(event, None)
+        maybe_pluralize.assert_called_once_with("strawberry", 2)
+        self.assertEqual(
+            result, {"result": maybe_pluralize.return_value}
+        )
