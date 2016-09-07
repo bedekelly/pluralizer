@@ -25,7 +25,7 @@ def maybe_pluralize(noun, quantity):
     return pluralize(noun)
 
 
-def pluralize_handler(event, _):
+def pluralize_handler(event, _=None):
     """
     Given an "event", extract the noun and quantity and return the result
     of pluralizing the noun.
@@ -38,6 +38,8 @@ def pluralize_handler(event, _):
 
     if noun == "":
         raise LambdaException("Bad Request: noun is empty")
+    if not isinstance(quantity, int):
+        raise LambdaException("Bad Request: quantity must be an integer")
 
     return {
         "result": maybe_pluralize(noun, quantity)

@@ -60,7 +60,7 @@ class TestPluralizer(unittest.TestCase):
         maybe_pluralize and wraps the result in a dict accordingly.
         """
         event = {"quantity": 2, "noun": "strawberry"}
-        result = pluralize_handler(event, None)
+        result = pluralize_handler(event)
         maybe_pluralize.assert_called_once_with("strawberry", 2)
         self.assertEqual(
             result, {"result": maybe_pluralize.return_value}
@@ -73,5 +73,16 @@ class TestPluralizer(unittest.TestCase):
         """
         self.assertRaises(
             LambdaException,
-            lambda: pluralize_handler({"noun": "", "quantity": 2}, None)
+            lambda: pluralize_handler({"noun": "", "quantity": 2})
+        )
+
+    def test_pluralize_handler_string_quantity(self):
+        """
+        When pluralize_handler is called with a string for its quantity, it
+        should raise an error detailing why 'quantity' (an integer) cannot be
+        a string.
+        """
+        self.assertRaises(
+            LambdaException,
+            lambda: pluralize_handler({"noun": "thing", "quantity": "some"})
         )
