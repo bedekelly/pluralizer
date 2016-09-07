@@ -3,8 +3,13 @@ pluralizer: A Lambda handler to pluralize (or not) a noun.
 """
 
 
-class LambdaException(Exception):
+class BadRequest(Exception):
     """Stub class to stop any bad request raising just a plain Exception."""
+
+
+def bad_request(message):
+    """Utility to return a BadRequest error with the given message."""
+    return BadRequest("Bad Request: {}".format(message))
 
 
 def pluralize(noun):
@@ -34,12 +39,12 @@ def pluralize_handler(event, _=None):
         noun = event["noun"]
         quantity = event["quantity"]
     except KeyError as e:
-        raise LambdaException("Bad Request: {} not given".format(str(e)))
+        raise bad_request("{} not given".format(str(e)))
 
     if noun == "":
-        raise LambdaException("Bad Request: noun is empty")
+        raise bad_request("noun is empty")
     if not isinstance(quantity, int):
-        raise LambdaException("Bad Request: quantity must be an integer")
+        raise bad_request("quantity must be an integer")
 
     return {
         "result": maybe_pluralize(noun, quantity)

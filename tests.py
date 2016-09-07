@@ -3,7 +3,7 @@ import unittest
 from mock import patch
 
 from pluralizer import pluralize, maybe_pluralize, pluralize_handler, \
-    LambdaException
+    BadRequest
 
 
 class TestPluralizer(unittest.TestCase):
@@ -49,7 +49,7 @@ class TestPluralizer(unittest.TestCase):
     def test_pluralize_handler_no_noun(self):
         event = {"quantity": 10}
         self.assertRaises(
-            LambdaException,
+            BadRequest,
             lambda: pluralize_handler(event, None)
         )
 
@@ -72,7 +72,7 @@ class TestPluralizer(unittest.TestCase):
         should raise an error detailing why an empty noun is a bad request.
         """
         self.assertRaises(
-            LambdaException,
+            BadRequest,
             lambda: pluralize_handler({"noun": "", "quantity": 2})
         )
 
@@ -83,6 +83,6 @@ class TestPluralizer(unittest.TestCase):
         a string.
         """
         self.assertRaises(
-            LambdaException,
+            BadRequest,
             lambda: pluralize_handler({"noun": "thing", "quantity": "some"})
         )
