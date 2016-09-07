@@ -65,3 +65,13 @@ class TestPluralizer(unittest.TestCase):
         self.assertEqual(
             result, {"result": maybe_pluralize.return_value}
         )
+
+    def test_pluralize_handler_empty_noun(self):
+        """
+        When pluralize_handler is called with an empty string for its noun, it
+        should raise an error detailing why an empty noun is a bad request.
+        """
+        self.assertRaises(
+            LambdaException,
+            lambda: pluralize_handler({"noun": "", "quantity": 2}, None)
+        )

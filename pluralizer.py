@@ -19,6 +19,7 @@ def maybe_pluralize(noun, quantity):
     Given a noun and number of occurrences, potentially make the noun a
     plural.
     """
+
     if quantity == 1:
         return noun
     return pluralize(noun)
@@ -34,6 +35,10 @@ def pluralize_handler(event, _):
         quantity = event["quantity"]
     except KeyError as e:
         raise LambdaException("Bad Request: {} not given".format(str(e)))
+
+    if noun == "":
+        raise LambdaException("Bad Request: noun is empty")
+
     return {
         "result": maybe_pluralize(noun, quantity)
     }
