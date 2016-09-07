@@ -32,5 +32,5 @@ def pluralize_handler(event, context):
         noun = event["noun"]
         quantity = event["quantity"]
     except KeyError as e:
-        raise ValueError("Bad Request: noun or quantity not provided.")
+        return "Bad Request: noun or quantity not provided."
     return maybe_pluralize(noun, quantity)
