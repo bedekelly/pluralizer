@@ -3,6 +3,10 @@ pluralizer: A Lambda handler to pluralize (or not) a noun.
 """
 
 
+class LambdaException(Exception):
+    """Stub class to stop any bad request raising just a plain Exception."""
+
+
 def pluralize(noun):
     """Given a noun, make it a plural."""
     if noun.endswith("y"):
@@ -29,7 +33,7 @@ def pluralize_handler(event, _):
         noun = event["noun"]
         quantity = event["quantity"]
     except KeyError as e:
-        raise Exception("Bad Request: {} not given".format(str(e)))
+        raise LambdaException("Bad Request: {} not given".format(str(e)))
     return {
         "result": maybe_pluralize(noun, quantity)
     }
