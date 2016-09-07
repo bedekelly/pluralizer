@@ -31,10 +31,10 @@ def pluralize_handler(event, _):
         noun = event["noun"]
         quantity = event["quantity"]
     except KeyError as e:
-        return json.dumps({
+        return {
             "errorMessage": "{} not given".format(str(e)),
             "errorType": "Bad Request",
-        })
-    return json.dumps({
+        }
+    return {
         "result": maybe_pluralize(noun, quantity)
-    })
+    }

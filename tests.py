@@ -51,10 +51,10 @@ class TestPluralizer(unittest.TestCase):
         result = pluralize_handler(event, None)
         self.assertEqual(
             result,
-            json.dumps({
+            {
                 "errorMessage": "'noun' not given",
                 "errorType": "Bad Request",
-            })
+            }
         )
 
 
