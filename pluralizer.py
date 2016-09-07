@@ -1,9 +1,8 @@
 """
 pluralizer: A Lambda handler to pluralize (or not) a noun.
-
 """
 
-from pprint import pprint
+import json
 
 
 def pluralize(noun):
@@ -23,7 +22,7 @@ def maybe_pluralize(noun, quantity):
     return pluralize(noun)
 
 
-def pluralize_handler(event, context):
+def pluralize_handler(event, _):
     """
     Given an "event", extract the noun and quantity and return the result
     of pluralizing the noun.
@@ -32,5 +31,10 @@ def pluralize_handler(event, context):
         noun = event["noun"]
         quantity = event["quantity"]
     except KeyError as e:
-        return "Bad Request: noun or quantity not provided."
-    return maybe_pluralize(noun, quantity)
+        return json.dumps({
+            "errorMessage": "{} not given".format(str(e)),
+            "errorType": "Bad Request",
+        })
+    return json.dumps({
+        "result": maybe_pluralize(noun, quantity)
+    })

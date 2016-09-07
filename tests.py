@@ -1,8 +1,9 @@
+import json
 import unittest
 
 from mock import patch
 
-from pluralizer import pluralize, maybe_pluralize
+from pluralizer import pluralize, maybe_pluralize, pluralize_handler
 
 
 class TestPluralizer(unittest.TestCase):
@@ -44,6 +45,17 @@ class TestPluralizer(unittest.TestCase):
         return_value = maybe_pluralize("tree", 2)
         self.assertEqual(return_value, expected)
         pluralize_.assert_called_once_with("tree")
+
+    def test_pluralize_handler_no_noun(self):
+        event = {"quantity": 10}
+        result = pluralize_handler(event, None)
+        self.assertEqual(
+            result,
+            json.dumps({
+                "errorMessage": "'noun' not given",
+                "errorType": "Bad Request",
+            })
+        )
 
 
 if __name__ == "__main__":
