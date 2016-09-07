@@ -28,13 +28,9 @@ def pluralize_handler(event, context):
     Given an "event", extract the noun and quantity and return the result
     of pluralizing the noun.
     """
-    pprint(event)
-    pprint(context)
-
     try:
         noun = event["noun"]
         quantity = event["quantity"]
-    except KeyError:
-        return context.fail("Bad Request: noun or quantity not provided.")
-    else:
-        return context.succeed(maybe_pluralize(noun, quantity))
+    except KeyError as e:
+        raise ValueError("Bad Request: noun or quantity not provided.")
+    return maybe_pluralize(noun, quantity)
