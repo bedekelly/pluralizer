@@ -1,5 +1,8 @@
 # Pluralizer...
-...is a microservice to pluralize (or not) a noun depending on quantity. It's a REST-ful JSON API endpoint, and implementation-wise it's designed to run on AWS Lambda behind API Gateway.
+
+![](https://bede.io/content/images/2016/09/Screen-Shot-2016-09-08-at-00-19-01.png)
+
+...is a super-basic microservice to pluralize (or not) a noun depending on quantity. It's a REST-ful JSON API (all the buzzwords), and implementation-wise it's designed to run on AWS Lambda behind API Gateway.
 
 It's using Travis-CI for continuous integration to this Lambda function. Right now it's just deploying to production whenever the Master branch is updated, but it wouldn't be too much work to make this work with Git-Flow and multiple environments.
 
