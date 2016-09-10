@@ -14,6 +14,9 @@ def bad_request(message):
 
 def pluralize(noun):
     """Given a noun, make it a plural."""
+    for ending in ("ss", "o", "ge", "tch"):
+        if noun.endswith(ending):
+            return noun + "es"
     if noun.endswith("y"):
         return noun[:-1] + "ies"
     return noun + "s"
@@ -45,7 +48,7 @@ def pluralize_handler(event, _=None):
         raise bad_request("noun is empty")
     if not isinstance(quantity, int):
         raise bad_request("quantity must be an integer")
-    if not isinstance(noun, str):
+    if not isinstance(noun, (str, unicode)):
         raise bad_request("noun must be a string")
 
     return {

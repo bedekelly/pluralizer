@@ -13,20 +13,16 @@ class TestPluralizer(unittest.TestCase):
         """
         The `pluralize` function should return the plural form of any noun.
         """
-        self.assertEqual(
-            pluralize("marker"),
-            "markers"
-        )
-
-        self.assertEqual(
-            pluralize("tree"),
-            "trees"
-        )
-                      
-        self.assertEqual(
-            pluralize("story"),
-            "stories"
-        )
+        plural_mapping = {
+            "marker": "markers",
+            "tree": "trees",
+            "story": "stories",
+            "porcupine": "porcupines",
+            "kiss": "kisses",
+            "hero": "heroes"
+        }
+        for singular, plural in plural_mapping.items():
+            self.assertEqual(pluralize(singular), plural)
 
     def test_maybe_pluralize_one(self):
         """
