@@ -17,7 +17,7 @@ def pluralize(noun):
     for ending in ("ss", "o", "ge", "tch"):
         if noun.endswith(ending):
             return noun + "es"
-    if noun.endswith("y"):
+    if noun.endswith("y") and noun[-2] not in "aeiou":
         return noun[:-1] + "ies"
     return noun + "s"
 

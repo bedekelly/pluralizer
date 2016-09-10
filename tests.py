@@ -19,10 +19,12 @@ class TestPluralizer(unittest.TestCase):
             "story": "stories",
             "porcupine": "porcupines",
             "kiss": "kisses",
-            "hero": "heroes"
+            "hero": "heroes",
+            "day": "days",
+            "monkey": "monkeys"
         }
         for singular, plural in plural_mapping.items():
-            self.assertEqual(pluralize(singular), plural)
+            self.assertEqual(plural, pluralize(singular))
 
     def test_maybe_pluralize_one(self):
         """
