@@ -1,6 +1,6 @@
 # Pluralizer...
 
-![](https://bede.io/content/images/2016/09/Screen-Shot-2016-09-08-at-00-19-01.png)
+![Screenshot of Pluralizer](https://bede.io/content/images/2016/09/Screen-Shot-2016-09-08-at-00-19-01.png)
 
 ...is a super-basic microservice to pluralize (or not) a noun depending on quantity. It's a REST-ful JSON API (all the buzzwords), and implementation-wise it's designed to run on AWS Lambda behind API Gateway.
 
