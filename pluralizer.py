@@ -2,7 +2,6 @@
 pluralizer: A Lambda handler to pluralize (or not) a noun.
 """
 
-
 O_EXCEPTIONS = [
     "canto",
     "hetero",
@@ -14,7 +13,6 @@ O_EXCEPTIONS = [
     "quarto",
     "kimono",
 ]
-
 
 
 class BadRequest(Exception):
