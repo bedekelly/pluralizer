@@ -11,4 +11,4 @@ createZip() {
     zip build/$ZIP_NAME -r9 * >/dev/null;
 }
 
-createZip && echo Successfully built: build/$ZIP_NAME
+createZip && echo Successfully built: build/$ZIP_NAME && du -h build/$ZIP_NAME
