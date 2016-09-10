@@ -3,6 +3,20 @@ pluralizer: A Lambda handler to pluralize (or not) a noun.
 """
 
 
+O_EXCEPTIONS = [
+    "canto",
+    "hetero",
+    "photo",
+    "zero",
+    "piano",
+    "portico",
+    "pro",
+    "quarto",
+    "kimono",
+]
+
+
+
 class BadRequest(Exception):
     """Stub class to stop any bad request raising just a plain Exception."""
 
@@ -14,10 +28,11 @@ def bad_request(message):
 
 def pluralize(noun):
     """Given a noun, make it a plural."""
+    normal_noun = noun.lower().strip()
     for ending in ("ss", "o", "ge", "tch"):
-        if noun.endswith(ending):
+        if normal_noun.endswith(ending) and normal_noun not in O_EXCEPTIONS:
             return noun + "es"
-    if noun.endswith("y") and noun[-2] not in "aeiou":
+    if normal_noun.endswith("y") and normal_noun[-2] not in "aeiou":
         return noun[:-1] + "ies"
     return noun + "s"
 
