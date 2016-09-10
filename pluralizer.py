@@ -45,6 +45,8 @@ def pluralize_handler(event, _=None):
         raise bad_request("noun is empty")
     if not isinstance(quantity, int):
         raise bad_request("quantity must be an integer")
+    if not isinstance(noun, str):
+        raise bad_request("noun must be a string")
 
     return {
         "result": maybe_pluralize(noun, quantity)
