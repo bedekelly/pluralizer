@@ -2,8 +2,8 @@ import unittest
 
 from mock import patch
 
-from pluralizer import pluralize, maybe_pluralize, pluralize_handler, \
-    BadRequest
+from lambda_utils import BadRequest
+from pluralizer import pluralize, maybe_pluralize, pluralize_handler
 
 
 class TestPluralizer(unittest.TestCase):
