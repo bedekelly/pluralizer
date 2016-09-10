@@ -1,29 +1,23 @@
 language: python
 python:
 - '2.7'
-
 before_install:
-  - pip install awscli
-
+- pip install awscli
 install: pip install -r requirements.txt
 script: python -m unittest discover
-
 env:
- global:
-  - AWS_DEFAULT_REGION: "eu-west-1"
+  global:
+  - AWS_DEFAULT_REGION: eu-west-1
   - AWS_ACCESS_KEY_ID: AKIAIESRLOBJSHKHNRAA
-  - secure: "dPd3UGLhE2QgjjEuER/wZDJ6K8iHHFqbavNWXcmvcksGDDw+qDtL+5QqVtkG+MDCsljjXFZQQlJUSN1JsqCE6v7448ZMI53rIwthPI/ygO8A5/4laIMPqf1bpWzZIdxBKjenAAnlWSaph/BkSv76OZomeBHecr5rlxJyav2YONie/vrppwT4fLUCEOIboA9KJjqf+sk4zv0b1O6j0jfXC5XPOteN+2WRNU54I7klIZXvIk4NXzgsVueMt96OeCaiBJlQLOCP8uzW49xnuXotpltxMjw4oWdIgKwTxmGXWJdJcMcp7HaIs8Zf3DABQ+vs04hbL++75MJzIFwqlWEUltPrG82mF6TYyEqc314Ux4uM6+/Z3k8Fw3TDLJ6AK5jgdII07WwRhvgO+oChZWVZuLUZwm9tRWz4EtdirIz3yCxm44LMw+mAXPqjMrWu/vPgAlY/9lZumaG2S6rxIymSu5Js7griMTh56rLOLUcFBTLCX5A7+yznbEcreYQpCgoiSY0lT9+I8VhKyE/UUTsReP1nenBXtYP4fQl+U7Uq5hNpFhB0k1v26ss9RpvnHU4h6xsC6TOU61+hIbmKtEQM0Y2uCycLF2PX6RHvU0AXuE/HMPcrV7C+qs6coufzUDYMPthr510Nf359UqXWX/yfVG42NJ5gEcuTCV+ukWS90+s="
-
+  - secure: dPd3UGLhE2QgjjEuER/wZDJ6K8iHHFqbavNWXcmvcksGDDw+qDtL+5QqVtkG+MDCsljjXFZQQlJUSN1JsqCE6v7448ZMI53rIwthPI/ygO8A5/4laIMPqf1bpWzZIdxBKjenAAnlWSaph/BkSv76OZomeBHecr5rlxJyav2YONie/vrppwT4fLUCEOIboA9KJjqf+sk4zv0b1O6j0jfXC5XPOteN+2WRNU54I7klIZXvIk4NXzgsVueMt96OeCaiBJlQLOCP8uzW49xnuXotpltxMjw4oWdIgKwTxmGXWJdJcMcp7HaIs8Zf3DABQ+vs04hbL++75MJzIFwqlWEUltPrG82mF6TYyEqc314Ux4uM6+/Z3k8Fw3TDLJ6AK5jgdII07WwRhvgO+oChZWVZuLUZwm9tRWz4EtdirIz3yCxm44LMw+mAXPqjMrWu/vPgAlY/9lZumaG2S6rxIymSu5Js7griMTh56rLOLUcFBTLCX5A7+yznbEcreYQpCgoiSY0lT9+I8VhKyE/UUTsReP1nenBXtYP4fQl+U7Uq5hNpFhB0k1v26ss9RpvnHU4h6xsC6TOU61+hIbmKtEQM0Y2uCycLF2PX6RHvU0AXuE/HMPcrV7C+qs6coufzUDYMPthr510Nf359UqXWX/yfVG42NJ5gEcuTCV+ukWS90+s=
 before_deploy: ./build.sh
-
 deploy:
-    provider: s3
-    access_key_id: AKIAIESRLOBJSHKHNRAA
-    bucket: pluralize-code-bede-io
-    skip_cleanup: true
-    local_dir: build
-    region: eu-west-1
-    secret_access_key:
-      secure: "cYCy6tkwsUt8QdLs7e6GSOznepM1P9r+vrcmCCBwgJ6ZsLIqq1E5Nyj5Lf1SvnD4ryqH94TRildyIRJ3fufRru9SPR2qoPAsMXlNVNFhYSOEPm4r8QLSgZebSoGrebbMfFYSgh9wDlZY/Qfltnbw0yHNFsxk/yj5x/W2XGzResIrJJkC9CcuREIpx0NKx/dpik5ZmCVza2Sx3A5w+F4lWEk43cq+pucJIq1PSBUmHuA/z02uIQtwbCt+ImkzD2rJCCjXkWWLL5G39avJmx/PFYzDl+ztKWFX1RnAHNFUh8NOc3GpPN/jhVRo8y5r9loBLc08gM/UZpKbDZJPY75ASmzdZ7GdIfllWE+VUxrXJ9vGbY+IIh+cWDG3HwbzGwvDVdieXz6E1MlQN54j/KAHFvcLEr/vaffen//nKBYWaZ5tMYfRmFwqIW3pXMzybhD49DiIb7qzPggf9WQiK3rryvBvx9SZgSqe2FIxNpPLuzZn75Ja6ac75kqoL4bP/kkjKXHqtP73KjiSbl77no8dSP0Unlv/b32TGCm8gIfGJAa4AARVIc1+n89FsVZI4CLptW0JjAjz/LoL5Q991RER8zM0Zr7lHCDKuNUpyw9wgedd64YO1JxvaQwk0FS25Ax9Ah/5lR8WX/Q6dCp0OqbP4ZNuDyRiqHqx/OJLVqs6bI4="
-
+  provider: s3
+  access_key_id: AKIAIESRLOBJSHKHNRAA
+  secret_access_key:
+    secure: GVLJytMDzeqUeuBG6Ky+qxNrHIYXZTPSz97mGaNTK/j0p8qcv0gipXJZjGSgfp+9hIgjVHkXjFTR+u8l76iZ7MsmpQHT0V8uNp984ojliYlrcfhbJNLGmhPKYTQTH12A9FNtUZuO4u1YMnHr9WEVVtLxDw3V+IlJvVUK2wTsL2e09oS5imjz6H/zqk83R4i5LFMGtGOhTRZqf8wVmXzmTnhTW9Lu23vmvVdY492Q7Yps6A/cyyM7z/ifj0aQcE5lv9bRFDw8Nvuymjx69hdRVf4DOLqqvSFBboY1nTFTngbE6v6Cad34io2Yqfcp8faVxQeXm5nsvuHSRFNM4TJIb0aXqgEIOmSfTn499cBKb9sLWF2UCHTRo4DqyEeH+35kKXfnMdrd3XljsGQ47R5RPjdxswc/lr+atCnWVEDfcP6hsP+Is35yrqRB8pT50Co74dgH+Mje0miYQ25YEyjz3mLLuL61/Ha2UjPv34ki3b9yaoWWKqFo3H0RB8p5lxu3pQvApMr2lQ21Uu0C21mpiHklOx0S93VWz/0efO8xQ5uCR3hZ1XUR7Fe/80YqX/QsCn1m67R55pAUw8s6RzQFfUdCmP0oMq8etpjlrmwvvr38x5h+fLN9tFR3JSHsyhho7/qDD4XuY6UXrsKzMhQhjXLSo+yX74SLi5xVVw6i2cU=
+  bucket: pluralize-code-bede-io
+  local-dir: build
+  on:
+    repo: bedekelly/pluralizer
 after_deploy: ./post_deploy.sh
