@@ -12,8 +12,3 @@ createZip() {
 }
 
 createZip && echo Successfully built: build/$ZIP_NAME && du -h build/$ZIP_NAME
-
-cd build
-unzip build.zip
-ls -latr
-du . -h
